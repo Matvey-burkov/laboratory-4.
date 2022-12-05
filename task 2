@@ -1,0 +1,46 @@
+#include <fstream>
+#include <iostream>
+int digit_Counter(int number);//прототип функций digit_Counter
+void output( int counter1,int counter2,int counter3);
+
+int main() {
+	int number, counter1=0, counter2=0, counter3=0, num;// объявление переменных int
+	std::ifstream f_input;// объявление fstream класса
+	f_input.open("numbers.txt");
+	while(!f_input.eof())//выводит положительное значение, если файл не пустой
+	{
+		f_input >> number;// записываем из потока в переменную
+		num = digit_Counter(number);// вызывается функция digit_Counter
+		if (num == 1)
+			counter1++;
+		else if (num == 2)
+			counter2++;
+		else if (num == 3)
+			counter3++;
+	}
+	f_input.close();
+	output( counter1, counter2, counter3);// вызов функций (счётчики)
+	return 0;
+}
+int digit_Counter(int number)
+{
+	int counter = 0;
+	while (number != 0)// выполняется пока не равен нулю
+	{
+		number /= 10;
+		counter++;// счётчик
+	}
+	return counter;
+}
+
+void output( int counter1,int counter2, int counter3)//название функций
+{
+	std::ofstream outfile;//объявление для вывода 
+	outfile.open(" result.txt", std::ios_base::app);//открываем файл для дописывания 
+	outfile 
+		<< "digit counter1 = " << counter1 << std::endl
+		<< "digit counter2 = " << counter2 << std::endl 
+		<< "digit counter3 = " << counter3 << std::endl;
+	outfile.close();
+}
+
