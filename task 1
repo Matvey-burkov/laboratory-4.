@@ -1,0 +1,47 @@
+#include <fstream>
+#include <iostream>
+int divisors(int number);//прототип функций divisors
+void output(int number, int counter);
+int input();
+int main() {
+	double numberUser;// переменная с плавающей точкой double
+	int counter;
+	do// что бы выполнился первый раз
+	{
+		numberUser = input();//переменная в numberUser то что выведет input
+		counter = divisors(numberUser);// выведет в divisors
+		output(numberUser, counter);// вызываем функцию output
+	} while (numberUser != 0);//цикл пока 0 не равен
+ 
+	return 0;
+}
+int divisors(int number)//называние функции
+{
+	double sgrtNumber;//объявляем переменную с плавающей точкой
+	int counter = 0;
+	sgrtNumber = sqrt(number);//присваиваем корень из number
+	for (int i = 1; i <= sgrtNumber; i++)
+	{
+		if (!(number % i))//делим на остаток i
+			if (i != number / i)
+				counter++;
+	}
+	return counter;
+}
+
+void output(int number, int counter)
+{
+	std::ofstream outfile;//указали поток для вывода outfile 
+	outfile.open(" divisors.txt", std::ios_base::app);// открываем файл с дописыванием
+	outfile << "in number: " << number << "divisors: " << counter << std::endl;//дописываем в файл перемннные и текст
+	outfile.close();
+}
+
+int input()
+{
+	int number;
+	std::cout << "input  number: ";
+	std::cin >> number;
+	return number;
+}
+
