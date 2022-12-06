@@ -3,9 +3,9 @@
 int digit_Counter(int number);//прототип функций digit_Counter
 void output( int counter1,int counter2,int counter3);
 
-int main() {
+int main() {// начало выполнения кода
 	int number, counter1=0, counter2=0, counter3=0, num;// объявление переменных int
-	std::ifstream f_input;// объявление fstream класса
+	std::ifstream f_input;// объявление переменной fstream 
 	f_input.open("numbers.txt");
 	while(!f_input.eof())//выводит положительное значение, если файл не пустой
 	{
@@ -19,7 +19,7 @@ int main() {
 			counter3++;
 	}
 	f_input.close();
-	output( counter1, counter2, counter3);// вызов функций (счётчики)
+	output( counter1, counter2, counter3);// вызов функций вывода (счётчики)
 	return 0;
 }
 int digit_Counter(int number)
