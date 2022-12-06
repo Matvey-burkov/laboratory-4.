@@ -22,8 +22,7 @@ int divisors(int number)//называние функции
 	sgrtNumber = sqrt(number);//присваиваем корень из number
 	for (int i = 1; i <= sgrtNumber; i++)
 	{
-		if (!(number % i))//делим на остаток i
-			if (i != number / i)
+		if (number % i == 0)//делим на остаток i
 				counter++;
 	}
 	return counter;
